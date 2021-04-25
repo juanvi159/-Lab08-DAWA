@@ -51,6 +51,20 @@ app.delete('/api/persons/:id',(req,res) => {
 
 app.use(express.json());
 app.post('/api/persons',(req,res) => {
+
+    if(!req.body.name){
+        res.status(400).send({error:'Se requiere el nombre'});
+        return;
+    } else if (!req.body.number){
+        res.status(400).send({error:'Se requiere el numero'});
+        return;
+    }
+    const nombre = lista.map((item)=>{return item['name']})
+    if(nombre.includes(req.body.name)){
+        res.status(400).send({error:'El nombre ya esta en la lista'});
+        return;
+    }
+
     const append = {
         id: Math.round(Math.random()*10000),
         name: req.body.name,
