@@ -28,7 +28,16 @@ let now= new Date();
 app.get('/info',(req,res) => {
     res.send(`<h3>Phonebook has info for ${lista.length} people</h3><h3>`+now+"</h3>");
 });
+
 app.get('/api/persons',(req,res) => {
     res.send(lista);
 });
+
+app.get('/api/persons/:id',(req,res) => {
+    const person = lista.find(a => a.id === parseInt(req.params.id));
+    if(!person)
+        res.status(404).send(`No existe el registro numero ${req.params.id}.`);
+    res.send(person);
+});
+
 app.listen(3001,()=>console.log('Abriendo en el Puerto 3001'))
