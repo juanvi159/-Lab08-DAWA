@@ -40,4 +40,13 @@ app.get('/api/persons/:id',(req,res) => {
     res.send(person);
 });
 
+app.delete('/api/persons/:id',(req,res) => {
+    const borrar = lista.find(a => a.id === parseInt(req.params.id));
+    if(!borrar)
+        res.status(404).send(`No existe el registro numero ${req.params.id}.`);
+    const index = lista.indexOf(borrar);
+    lista.splice(index,1)
+    res.send(borrar);
+});
+
 app.listen(3001,()=>console.log('Abriendo en el Puerto 3001'))
