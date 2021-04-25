@@ -49,4 +49,15 @@ app.delete('/api/persons/:id',(req,res) => {
     res.send(borrar);
 });
 
+app.use(express.json());
+app.post('/api/persons',(req,res) => {
+    const append = {
+        id: Math.round(Math.random()*10000),
+        name: req.body.name,
+        number: req.body.number,
+    };
+    lista.push(append);
+    res.send(append);
+});
+
 app.listen(3001,()=>console.log('Abriendo en el Puerto 3001'))
