@@ -72,7 +72,8 @@ app.post('/api/persons', (req, res) => {
   res.send(append)
 })
 
-app.listen(3001, () => console.log('Abriendo en el Puerto 3001'))
 app.use(function(req, res, next) {
     res.status(404).send('Juan dice que no existes!');
   });
+const port = process.env.PORT || 3001;
+app.listen(port,()=>console.log(`Listening on port ${port}`));
