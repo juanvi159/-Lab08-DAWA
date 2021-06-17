@@ -53,7 +53,7 @@ app.post('/api/persons', (req, res) => {
 })
 
 app.use(function(req, res, next) {
-    res.status(404).send('Juan dice que no existes!');
+    res.status(404).send('Esto es solo una prueba, para el lab 10 de la nube!');
   });
 const port = process.env.PORT || 3001;
 app.listen(port,()=>console.log(`Listening on port ${port}`));
